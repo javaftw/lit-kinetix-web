@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const background = document.getElementById('background');
     const slides = document.querySelectorAll('.slide');
     const imagePaths = [
-        '/img/1.png',  // Home
-        '/img/2.png',  // Products
-        '/img/3.png',  // Downloads
-        '/img/4.png'   // Contact
+        'img/1.png',  // Home
+        'img/2.png',  // Products
+        'img/3.png',  // Downloads
+        'img/4.png'   // Contact
     ];
 
     // Create a cache for preloaded images
