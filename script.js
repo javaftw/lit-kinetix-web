@@ -64,13 +64,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             const newImage = imagePaths[slideIndex];
             
             if (newImage !== currentImage) {
-                // Check if image is in cache
-                if (imageCache.has(newImage)) {
-                    currentImage = newImage;
-                    background.style.backgroundImage = `url('${newImage}')`;
-                    background.style.opacity = 1;
-                }
-            }
+				if (imageCache.has(newImage)) {
+					background.style.opacity = 0;
+					setTimeout(() => {
+						currentImage = newImage;
+						background.style.backgroundImage = `url('${newImage}')`;
+						background.style.opacity = 1;
+					}, 250);
+				}
+			}
         }
     };
 

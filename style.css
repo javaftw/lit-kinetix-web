@@ -13,6 +13,8 @@ body, html {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -21,14 +23,16 @@ body, html {
     transition: opacity 0.5s ease;
     z-index: -1;
     opacity: 1;
-    will-change: background-image; /* Optimize for background changes */
+    pointer-events: none;
 }
 
-/* Container for slides with snapping */
+/* Ensure slides container doesn't block background */
 #slides {
-    height: 100%;
+    height: 100vh;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory; /* Snaps to each slide */
+    scroll-snap-type: y mandatory;
+    position: relative;
+    background: transparent;
 }
 
 /* Base slide class - modular foundation for all slides */
