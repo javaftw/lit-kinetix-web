@@ -1,12 +1,14 @@
-/* Reset default margins and ensure full height */
+/* Reset defaults and set full height */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
+    background-color: black; /* Black page background */
+    font-family: sans-serif; /* Sans-serif font */
 }
 
-/* Fixed background with fade transition */
+/* Fixed background with smooth transition */
 #background {
     position: fixed;
     top: 0;
@@ -15,63 +17,35 @@ body, html {
     height: 100%;
     background-size: cover;
     background-position: center;
-    transition: opacity 0.5s ease; /* Smooth fade for background */
-    z-index: -1; /* Behind the content */
+    transition: opacity 0.5s ease; /* Smooth fade effect */
+    z-index: -1; /* Behind content */
+    opacity: 1; /* Fully visible by default */
 }
 
-/* Container for slides with snapping */
+/* Slides container with scroll snapping */
 #slides {
     height: 100%;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory; /* Snaps to each slide */
+    scroll-snap-type: y mandatory; /* Snap to each slide */
 }
 
-/* Base slide class - modular foundation for all slides */
+/* Slide styling */
 .slide {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
     display: flex;
     align-items: center;
     justify-content: center;
-    scroll-snap-align: start; /* Snaps to the top of each slide */
+    scroll-snap-align: start; /* Snap to top of slide */
 }
 
 /* Content styling */
 .content {
     text-align: center;
-    color: white; /* Assuming light text on dark images */
+    color: white; /* White text for visibility on dark backgrounds */
 }
 
-/* Home slide - unique positioning */
-.home .content {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    text-align: left;
-}
-
-.home h1 {
-    font-size: 4em; /* Large "LIT KINETIX" text */
+.slide h1, .slide h2 {
     margin: 0;
-}
-
-.home nav {
-    font-size: 1.2em;
-}
-
-.home nav a {
-    color: white;
-    text-decoration: none;
-    margin-right: 20px; /* Space between links */
-}
-
-/* Styling for other slides’ titles and text */
-.slide h2 {
     font-size: 3em;
-    margin: 0;
-}
-
-.slide p {
-    font-size: 1.5em;
-    margin: 10px 0;
 }

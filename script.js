@@ -1,40 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
     const background = document.getElementById('background');
     const slides = document.querySelectorAll('.slide');
+    const imagePaths = [
+        'img/1.png',  // Home
+        'img/2.png',  // Products
+        'img/3.png',  // Downloads
+        'img/4.png'   // Contact
+    ]; // Adjust paths to your image locations
 
-    // Set initial background
-    background.style.backgroundImage = `url('img/1.png')`;
+    // Preload all background images
+    imagePaths.forEach(path => {
+        const img = new Image();
+        img.src = path;
+    });
 
-    // Intersection Observer to change background based on visible slide
+    // Set initial background image immediately
+    background.style.backgroundImage = `url('${imagePaths[0]}')`;
+    background.style.opacity = 1;
+
+    // Intersection Observer to change background
     const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5 // Trigger when 50% of the slide is in view
+        root: null,           // Use viewport as root
+        rootMargin: '0px',    // No margin
+        threshold: 0.5        // Trigger when 50% of slide is visible
     };
 
     const observerCallback = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Get the slide’s index (1-based for image naming)
-                const slideIndex = Array.from(slides).indexOf(entry.target) + 1;
-                background.style.backgroundImage = `url('img/${slideIndex}.png')`;
-                background.style.opacity = 1; // Fade in
-            } else {
-                background.style.opacity = 0; // Fade out when leaving
+                const slideIndex = Array.from(slides).indexOf(entry.target);
+                background.style.backgroundImage = `url('${imagePaths[slideIndex]}')`;
+                background.style.opacity = 1; // Ensure visibility
             }
         });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     slides.forEach(slide => observer.observe(slide));
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1); // Remove #
-            const targetSlide = document.getElementById(targetId);
-            targetSlide.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
 });
