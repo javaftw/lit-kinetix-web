@@ -34,6 +34,7 @@ body, html {
     scroll-snap-type: y mandatory;
     position: relative;
     background: transparent;
+    background-color: transparent;
 }
 
 /* Base slide class - modular foundation for all slides */
