@@ -2,17 +2,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const background = document.getElementById('background');
     const slides = document.querySelectorAll('.slide');
     const imagePaths = [
-        'img/1.png',  // Home
-        'img/2.png',  // Products
-        'img/3.png',  // Downloads
-        'img/4.png'   // Contact
-    ];
+    '/img/1.png',  // Home
+    '/img/2.png',  // Products
+    '/img/3.png',  // Downloads
+    '/img/4.png'   // Contact
+];
 
-    // Preload all background images
-    imagePaths.forEach(path => {
-        const img = new Image();
-        img.src = path;
-    });
+    // Create a cache for preloaded images
+	const imageCache = new Map();
+
+	// Preload all background images
+	const preloadImages = async () => {
+		const loadPromises = imagePaths.map(path => {
+			return new Promise((resolve, reject) => {
+				const img = new Image();
+				img.onload = () => {
+					imageCache.set(path, img);
+					resolve();
+				};
+				img.onerror = reject;
+				img.src = path;
+			});
+		});
+		
+		try {
+			await Promise.all(loadPromises);
+			console.log('All images preloaded successfully');
+		} catch (error) {
+			console.error('Error preloading images:', error);
+		}
+	};
+
+	// Call preloadImages before setting up observers
+	await preloadImages();
 
     // Set initial background image immediately
     let currentImage = imagePaths[0];
