@@ -4,7 +4,7 @@ body, html {
     height: 100%;
     overflow: hidden;
     font-family: sans-serif;
-    /* Remove the black background */
+	background-color: #000000;
 }
 
 #background {
@@ -15,7 +15,7 @@ body, html {
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 1;  /* Change to positive z-index */
+    z-index: 1;  
 }
 
 #slides {
@@ -23,7 +23,7 @@ body, html {
     height: 100%;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    z-index: 2;  /* Place above background */
+    z-index: 2; 
 }
 
 /* Base slide class - modular foundation for all slides */
@@ -51,7 +51,7 @@ body, html {
 }
 
 .home h1 {
-    font-size: 4em; /* Large "LIT KINETIX" text */
+    font-size: 50vw; /* Large "LIT KINETIX" text */
     margin: 0;
 }
 
