@@ -1,40 +1,29 @@
-/* Reset default margins and ensure full height */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-    background-color: black; /* Black page background */
-    font-family: sans-serif; /* Sans-serif font */
+    font-family: sans-serif;
+    /* Remove the black background */
 }
 
-/* Fixed background with smooth transition */
 #background {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    transition: opacity 0.5s ease;
-    z-index: -1;
-    opacity: 1;
-    pointer-events: none;
-    background-image: url('img/1.png'); /* Add this line */
+    z-index: 1;  /* Change to positive z-index */
 }
 
-/* Ensure slides container doesn't block background */
 #slides {
-    height: 100vh;
+    position: relative;
+    height: 100%;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    position: relative;
-    background: transparent;
-    background-color: transparent;
+    z-index: 2;  /* Place above background */
 }
 
 /* Base slide class - modular foundation for all slides */
